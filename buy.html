@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy - sonny-wholesale Kenya</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; }
+        header { background-color: #f0f0f0; padding: 20px; text-align: center; }
+        nav { background-color: #ddd; padding: 10px; text-align: center; }
+        nav a { margin: 0 10px; text-decoration: none; }
+        .container { width: 80%; margin: 20px auto; }
+        footer { background-color: #f0f0f0; text-align: center; padding: 10px; position:absolute; bottom:0; width:100%;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Buy - sonny-wholesale  Kenya</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <div id="productDetails">
+            </div>
+        <div id="paymentOptions">
+            <h2>Payment Options</h2>
+            <p>M-Pesa, Credit Card, etc..</p>
+            <button onclick="processPayment()">Pay Now</button>
+        </div>
+    </div>
+   
+
+    <script>
+        // Get the product name from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product');
+
+        // Display product details
+        const productDetailsDiv = document.getElementById('productDetails');
+
+        let productInfo = {
+            "citrus_burst":{name:"Citrus Burst (50ml)", price: 500, image:"DSC01041.JPG"},
+            "floral_dream":{name:"Floral Dream (100ml)", price: 650, image:"DSC01041.JPG"},
+            "woody_spice":{name:"Woody Spice (30ml)", price: 400, image:"DSC01041.JPG"},
+        }
+
+        if (productName) {
+            let selectedProduct = productInfo[productName]
+            if(selectedProduct){
+                productDetailsDiv.innerHTML = `
+                    <img src="${selectedProduct.image}" alt="${selectedProduct.name}" width="150">
+                    <h2>${selectedProduct.name}</h2>
+                    <p>Price: Ksh ${selectedProduct.price}</p>
+                `;
+            } else {
+                productDetailsDiv.innerHTML = "<p>Product not found.</p>";
+            }
+
+        } else {
+            productDetailsDiv.innerHTML = "<p>No product selected.</p>";
+        }
+
+        // Placeholder for payment processing logic
+        function processPayment() {
+            alert('Payment processing initiated for ' + productName);
+            // In a real application, you would integrate with a payment gateway here.
+        }
+    </script>
+</body>
+</html>
